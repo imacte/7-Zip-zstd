@@ -23,7 +23,7 @@
 #include "MenuPageRes.h"
 
 #ifdef ZIP7_DARKMODE
-#include "../../../../DarkMode/lib/include/DarkModeSubclass.h"
+#include "../../../../DarkMode/lib/include/Darkmodelib.h"
 #endif
 
 using namespace NWindows;
@@ -225,8 +225,7 @@ bool CMenuPage::OnInit()
         s.Add_UInt32(val);
       if (i == 0)
         s.Insert(0, L"* ");
-      const int index = (int)_zoneCombo.AddString(s);
-      _zoneCombo.SetItemData(index, (LPARAM)val);
+      const int index = (int)_zoneCombo.AddString_SetItemData(s, (LPARAM)val);
       if (val == wz)
         _zoneCombo.SetCurSel(index);
     }
@@ -287,7 +286,7 @@ bool CMenuPage::OnInit()
   _initMode = false;
 
 #ifdef ZIP7_DARKMODE
-  DarkMode::setDarkListViewCheckboxes(_listView);
+  dmlib::setDarkListViewCheckboxes(_listView);
 #endif
 
   return CPropertyPage::OnInit();
